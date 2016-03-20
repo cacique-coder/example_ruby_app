@@ -1,0 +1,36 @@
+= form_for @client do |f|
+  - if @client.errors.any?
+    #error_explanation
+      ul
+        - @client.errors.full_messages.each do |message|
+          li = message
+  .row
+    .input-field.col.s12
+      = f.text_field(:cliente)
+      = f.label(:cliente)
+    .input-field.col.s12
+      = f.text_field(:cliente_optional)
+      = f.label(:cliente_optional, 'Nombre opcional')
+    .input-field.col.s12
+      = f.text_field(:rif)
+      = f.label(:rif)
+    .input-field.col.s12
+      = f.text_field(:telefono)
+      = f.label(:telefono)
+    .input-field.col.s12
+      = f.text_field(:zona_postal)
+      = f.label(:zona_postal )
+    .input-field.col.s12
+      = f.text_field(:saint_id)
+      = f.label(:saint_id)
+    .input-field.col.s12.check
+        = f.check_box(:contribuyente_especial)
+        = f.label(:contribuyente_especial)
+    .input-field.col.s12
+      = f.select(:status, Client.status)
+      = f.label(:status, 'Estatus')
+    .input-field.col.s12
+      = f.collection_select(:zone_id, Zone.all, :id, :name, include_blank: 'Sin zona asignada')
+  .actions
+    = f.submit 'Enviar'
+    = link_to 'Atras', clients_path

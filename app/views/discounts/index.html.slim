@@ -1,0 +1,27 @@
+.row.header
+  .col.s6
+    h2 Descuentos
+  .col.s3.offset-s3
+    = link_to 'Nuevo Descuento', new_discount_path, class: 'btn'
+
+table.striped
+  thead
+    tr
+      th= sort_link(@search, :name)
+      th= sort_link(@search, :percent)
+      th= sort_link(@search, :day)
+      th
+
+  tbody
+    - @discounts.each do |discount|
+      tr
+        td= discount.name
+        td= discount.percent
+        td= discount.day
+        td.actions-index
+          = link_to edit_discount_path(discount) do
+            i.mdi-editor-mode-edit
+          = link_to discount_path(discount), method: :delete, data: { confirm: 'Esta seguro?' } do
+            i.mdi-action-delete
+
+

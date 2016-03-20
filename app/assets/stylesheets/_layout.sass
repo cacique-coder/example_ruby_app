@@ -1,0 +1,42 @@
+body
+  &> header
+    @extend .z-depth-1
+  &> main
+    @extend .container
+.header
+  @extend .valign-wrapper
+  &>.col
+    @extend .valign
+
+.pagination
+  background: transparent
+
+.actions-index
+  width: 160px
+  a
+    margin-right: 10px
+    @extend .btn
+    @extend .btn-floating
+    @extend .blue
+.actions
+  a
+    @extend .btn
+.search-filter
+  margin-left: calc(25% - 40px)
+  margin-top: 14px
+textarea
+  @extend .materialize-textarea
+
+.order-not-process
+  @extend .white-text
+  @extend .red.darken-4
+
+input[type='date']
+  &::-webkit-inner-spin-button
+    display: none
+    -webkit-appearance: none
+
+th, td
+  &.money
+    text-align: right
+

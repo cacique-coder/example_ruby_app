@@ -1,0 +1,55 @@
+table.attributes-table
+  tbody
+    tr
+      th Vendedor
+      td= @order.user
+    tr
+      th Fecha creada
+      td= @order.date_created
+    tr
+      th Fecha Procesada
+      td= @order.date_updated
+    tr
+      th Status
+      td= @order.review
+
+table.stripped
+  caption= @order.client
+  thead
+    tr
+      th Codigo
+      th Cantidad
+      th Descripcion
+      th Marca
+      th.money Monto
+  tbody
+    - @order.items.each do |item|
+      tr
+        td= item.code
+        td= item.quantity
+        td= item.description
+        td= item.trademark
+        td.money= item.total
+  tfoot
+    tr
+      td colspan=3
+      td Descuento
+      td.money= @order.discount
+    tr
+      td colspan=3
+      td Subtotal
+      td.money= @order.subtotal
+    tr
+      td colspan=3
+      td IVA
+      td.money= @order.iva
+    tr
+      td colspan=3
+      td Total
+      td.money= @order.total
+
+- if @order.pending?
+  = form_for(@order, url: review_order_path(@order) ) do |f|
+    .row
+      .input-field.col-s3
+        = f.submit('Procesar')

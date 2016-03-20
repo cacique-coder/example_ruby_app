@@ -1,0 +1,49 @@
+.row.header
+  .col.s6
+    h2 Ordenes
+.row
+  = search_form_for @search, class: 'col s12' do |f|
+    .row
+      .input-field.col.s2
+        = f.collection_select(:client_id_eq, Client.all, :id, :cliente, include_blank: true)
+        = f.label(:cliente_id_eq)
+      .input-field.col.s2
+        = f.select(:review_eq, Order.status, include_blank: true)
+        = f.label(:review_eq, 'Status')
+      .input-field.col.s3
+         = f.select(:user_id_eq, options_from_collection_for_select(User::Salesman.all, :id, :name, @search.user_id_eq),include_blank: true)
+         = f.label(:user_id_eq, 'Buscar por vendedor')
+      .input-field.col.s2
+        .select-wrapper
+          = f.date_field(:created_at_gteq)
+        = f.label(:created_at_gteq, 'Desde')
+      .input-field.col.s2
+        .select-wrapper
+          = f.date_field(:created_at_lteq)
+        = f.label(:created_at_lteq, 'Hasta')
+      .col.s1
+        = f.button'', class: 'btn-floating search-filter right' do
+          i.mdi-action-search
+
+=paginate @orders
+table.striped
+  thead
+    tr
+      th = sort_link(@search, :id, 'Identificador')
+      th = sort_link(@search, :created_at, 'Creada')
+      th = sort_link(@search, :user_name, 'Vendedor')
+      th = sort_link(@search, :client_cliente, 'Cliente')
+      th = sort_link(@search, :status, 'Status')
+
+  tbody
+    - @orders.each do |order|
+      tr
+        td= link_to(order.id, order)
+        td= order.date_created
+        td= order.user
+        td= order.client
+        td class='#{order.review_class}'= order.review
+    - if @orders.empty?
+      tr
+        td colspan=5 No se han encontrado ordenes
+=paginate @orders

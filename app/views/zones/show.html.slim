@@ -1,0 +1,22 @@
+table.attributes-table
+  tbody
+    tr
+      th Nombre
+      td= @zone
+    tr
+      th Description
+      td= @zone.description
+    tr
+      th User
+      td= @zone.user
+    tr
+h4 clientes
+-if @zone.clients.any?
+  ul.clients
+    - @zone.clients.each do |client|
+      li= client
+-else
+  p Aun no hay clientes para esta zona
+.actions
+  = link_to 'Editar', edit_zone_path(@zone)
+  = link_to 'Atras', zones_path

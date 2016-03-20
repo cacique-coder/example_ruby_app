@@ -1,0 +1,47 @@
+.row.header
+  .col.s6
+    h2 Clientes
+  .col.s3.offset-s3
+    = link_to 'Nuevo Cliente', new_client_path, class: 'btn'
+
+.row
+  = search_form_for @q, class: 'col s12' do |f|
+    .row
+      .input-field.col.s3
+        = f.search_field :cliente_cont
+        = f.label :cliente_cont
+      .input-field.col.s3
+        = f.select(:zone_id_eq, options_from_collection_for_select(Zone.all, :id, :name, @q.zone_id_eq),include_blank: true)
+        = f.label(:zone_id_eq, 'Buscar por zona')
+      .input-field.col.s3
+         = f.select(:user_id_eq, options_from_collection_for_select(User::Salesman.all, :id, :name, @q.user_id_eq),include_blank: true)
+         = f.label(:user_id_eq, 'Buscar por vendedor')
+      .col-s3
+        = f.button'', class: 'btn-floating search-filter' do
+          i.mdi-action-search
+table.striped
+  thead
+    tr
+      th = sort_link(@q, :cliente, 'Nombre')
+      th = sort_link(@q, :zone_name, 'Zona')
+      th = sort_link(@q, :user_name, 'Vendedor')
+      th Descripcion
+      th = sort_link(@q, :status, 'Estatus')
+      th
+  tbody
+    - @clients.each do |client|
+      tr
+        td= client.cliente
+        td= client.zone
+        td= client.salesman
+        td= client.description
+        td= client.status
+        td.actions-index
+          = link_to client
+            i.mdi-action-search
+          = link_to edit_client_path(client) do
+            i.mdi-editor-mode-edit
+          = link_to client, data: {:confirm => 'Are you sure?'}, :method => :delete do
+            i.mdi-action-delete
+
+= paginate @clients

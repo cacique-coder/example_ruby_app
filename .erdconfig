@@ -1,0 +1,10 @@
+attributes:
+  - content
+  - foreign_key
+  - inheritance
+  - primary_keys
+filename: erd
+filetype: jpg
+inheritance: false
+orientation: vertical
+title: false

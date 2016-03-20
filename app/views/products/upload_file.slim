@@ -1,0 +1,12 @@
+h4 Actualizacion masiva
+= form_for('file',  url: massive_process_products_path, html: {method: :patch, multipart: true}) do |f|
+  .row
+    .file-field.input-field.col.s12
+      .btn
+        span Archivo (CSV)
+        = f.file_field('productos')
+      .file-path-wrapper
+        input.file-path.validate type="text"
+    .col.s12.actions
+      = f.submit 'Actualizar'
+      = link_to 'Atras', products_path

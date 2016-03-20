@@ -1,0 +1,19 @@
+= form_for @zone do |f|
+  - if @zone.errors.any?
+      ul
+        - @zone.errors.full_messages.each do |message|
+          li = message
+
+  .input-field
+    = f.label :name, 'Nombre'
+    = f.text_field :name
+  .input-field
+    = f.label :description, 'Descripcion'
+    = f.text_area :description
+  .input-field
+    = f.collection_select(:user, User::Salesman.all, :id,:name)
+    = f.label(:user, "Vendedor")
+
+  .actions
+    = f.submit 'Enviar'
+    = link_to 'Atras', zones_path, class: 'btn grey'

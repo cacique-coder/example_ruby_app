@@ -1,0 +1,2 @@
+class ZonesDecorator < PaginatingDecorator
+end

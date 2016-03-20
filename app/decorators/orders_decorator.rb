@@ -1,0 +1,3 @@
+class OrdersDecorator < PaginatingDecorator
+  
+end

@@ -1,0 +1,37 @@
+.row.header
+  .col.s6
+    h2 Productos
+  .col.s3.offset-s3
+    = link_to 'Subir Archivo', upload_file_products_path, class: 'btn'
+.row
+  = search_form_for(@search) do |f|
+    .row
+      .input-field.col.s4
+        = f.search_field :code_cont
+        = f.label :code_cont, 'Codigo'
+      .input-field.col.s4
+        = f.select(:trademark_eq, Product.trademark)
+        = f.label :trademark_eq, 'Marca'
+      .input-field.col.s1.offset-s3
+        = f.button '', class: 'btn-floating search-filter' do
+          i.mdi-action-search
+table
+  thead
+    tr
+      th= sort_link(@search,:code, 'Codigo')
+      th= sort_link(@search,:trademark, 'Marca')
+      th Descripcion
+      th= sort_link(@search, :units, 'Unidades')
+      th= sort_link(@search, :price, 'Precio')
+
+  tbody
+    - @products.each do |product|
+      tr
+        td= product.code
+        td= product.trademark
+        td= product.description
+        td= product.units
+        td= product.price
+
+= paginate @products
+

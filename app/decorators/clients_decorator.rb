@@ -1,0 +1,2 @@
+class ClientsDecorator < PaginatingDecorator
+end

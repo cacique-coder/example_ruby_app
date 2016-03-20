@@ -1,0 +1,39 @@
+p#notice = notice
+h2 #{@client.cliente}
+table.attributes-table
+  tbody
+    tr
+      th Nombre secundario
+      td= @client.cliente_optional
+    tr
+      th Telefono
+      td= @client.telefono
+    tr
+      th zona
+      td= @client.zone
+    tr
+      th Zona postal
+      td= @client.zona_postal
+    tr
+      th Descripcion
+      td= @client.description
+    tr
+      th rif
+      td= @client.rif
+    tr
+      th Direccion
+      th= @client.direction
+
+    tr
+      th saint_id
+      td= @client.saint_id
+
+    tr
+      th Estatus
+      td= @client.status
+
+.actions
+  = link_to 'Editar', edit_client_path(@client)
+  = link_to @client.change_status, change_status_client_path(@client), method: :patch
+  = link_to 'Volver', clients_path
+

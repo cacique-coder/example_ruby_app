@@ -1,0 +1,23 @@
+doctype html
+html
+  head
+    title ExampleApp
+    meta name='viewport' content="width=device-width, initial-scale=1"
+    link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" async=true
+    = stylesheet_link_tag 'application', media: 'all'
+    = csrf_meta_tags
+  body
+    header
+      nav
+        div class="nav-wrapper"
+          = link_to 'ExampleApp', root_path, class: 'brand-logo'
+          a href="#" data-activates="mobile-demo" class="button-collapse"
+            i class="material-icons" menu
+          ul#nav-mobile.right.hide-on-med-and-down
+            = current_user.menu
+          ul.side-nav#mobile-demo
+            = current_user.menu
+    main
+      = yield
+    = javascript_include_tag 'application', media: 'all'
+    = render partial: 'shared/toast.erb', locals:{ notice: flash[:notice], error: flash[:error]}

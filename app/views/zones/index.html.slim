@@ -1,0 +1,30 @@
+.row.header
+  .col.s6
+    h2 Zonas
+  .col.s3.offset-s3
+    = link_to 'Nueva Zona', new_zone_path, class: 'btn'
+
+= paginate @zones
+
+table.striped
+  thead
+    tr
+      th = sort_link(@q, :name)
+      th = sort_link(@q, :user_name)
+      th Descripcion
+      th Acciones
+  tbody
+    - @zones.each do |zone|
+      tr
+        td= zone.name
+        td= zone.user_name
+        td= zone.description
+        td.actions-index
+          = link_to zone_path(zone)
+            i.mdi-action-search
+          = link_to edit_zone_path(zone)
+            i.mdi-editor-mode-edit
+          = link_to zone_path(zone), method: :delete, data: { confirm: 'Are you sure?' } do
+            i.mdi-action-delete
+
+= paginate @zones
