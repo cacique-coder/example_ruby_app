@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/xzdasx/example_ruby_app.svg?branch=master)](https://travis-ci.org/xzdasx/example_ruby_app)
+
 This it's a example project that I have worked. Features
 
 - CSV uploader, load data in background (CSV)
