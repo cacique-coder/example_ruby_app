@@ -1,6 +1,12 @@
 language: ruby
+
 rvm:
   - 2.2.2
+
 before_script:
   - bundle exec rake db:create --trace
   - bundle exec rake db:schema:load
+
+addons:
+  code_climate:
+      repo_token: 5565eb002a7c5fdfab9c58acc8f273e2d5ea6e5de23c87012c832b3777bde343
