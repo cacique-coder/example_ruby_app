@@ -5,7 +5,7 @@
 [![Test Coverage](https://codeclimate.com/github/xzdasx/example_ruby_app/badges/coverage.svg)](https://codeclimate.com/github/xzdasx/example_ruby_app/coverage)
 
 
-This it's a example project that I have worked. Features
+This is a example project that I have worked. Features
 
 - CSV uploader, load data in background (CSV)
 - API
